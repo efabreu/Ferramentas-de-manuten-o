@@ -716,3 +716,95 @@ void MainWindow::abreJanelaDia(int anoBotao, int posicaoBotao, int sufixFunc)
 //{
 
 //}
+
+QStringList MainWindow::modificaBotoes(int cDiasMes, int qDiasMes, int sufixFunc, QStringList funcionario)
+{
+    for (int i =cDiasMes-1; i < cDiasMes+qDiasMes-1 ; i++ ) {
+        BotaoIsabella * qPushButton = new BotaoIsabella(i, sufixFunc, this);
+        connect(qPushButton, SIGNAL(clicked(int, int)), this, SLOT(onClick_qPushButton(int, int)));
+
+        if (funcionario[0] == "NAOEXISTE") {
+            ui->hlyt_funcionari01->addWidget(qPushButton);
+            qPushButton->setText("Funcionário não declarado em arquivo!");
+            qPushButton->setFixedWidth(800);
+            qPushButton->setFlat(1);
+            ui->lbl_f1->setText("Funcionário 0"+QString::number(sufixFunc));
+            ui->lbl_e1->setText("Equipe");
+            return funcionario;
+        } else{
+                ui->hlyt_funcionari01->addWidget(qPushButton);
+                if (funcionario[i].at(0) == QString::number(1)){ //dia de folga
+                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
+                    }if(funcionario[i].at(0) == QString::number(0)) { //dia de trabalho
+                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
+                    }if (funcionario[i].at(0) == QString::number(2)) { //dia de folga extraodinaria apos quinta
+                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
+                    }if (funcionario[i].at(0) == QString::number(3)) { //dia de trabalho troca
+                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
+                    }if (funcionario[i].at(0) == QString::number(4)) { //dia de folga troca
+                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
+                    }if (funcionario[i].at(0) == QString::number(5)) { //dia de ferias
+                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(250, 250, 250);background-color: rgb(0,0,139);}");
+                    }if (funcionario[i].at(0) == QString::number(6)) { //dia de feriado ou folga adicional
+                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
+                    }
+
+//                switch(funcionario[i].at(0)){
+
+//                    case 1:
+
+//                        break;
+//                    case 2:
+
+//                        break;
+//                    case 3:
+
+//                        break;
+//                    case 4:
+
+//                        break;
+//                    case 5:
+
+//                        break;
+//                    case 6:
+
+//                        break;
+//                    case 7:
+
+//                        break;
+//                    case 8:
+
+//                        break;
+//                    case 9:
+
+//                        break;
+//                    case 10:
+
+//                        break;
+
+//                }
+
+
+
+                    }
+
+                ui->lbl_f1->setText(funcionario[365]);
+                ui->lbl_e1->setText(funcionario[366]);
+                break;
+        }
+
+}

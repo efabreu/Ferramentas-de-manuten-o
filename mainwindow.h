@@ -21,6 +21,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+
+
 private slots:
     void onClick_qPushButton(int diaBotao, int sufixFunc);
 
@@ -42,6 +45,7 @@ signals:
 private:
     QString alterarMes(int mes);
     void criarDia(int qDiasMes);
+    QStringList modificaBotoes(int cDiasMes, int qDiasMes, int sufixFunc, QStringList funcionario);
     void mostrarFolgas01(int cDiasMes, int qDiaMes, int sufixFunc);
     void mostrarDiasSem(int qDiaMes);
     void lerArquivo(int sufixFunc);
