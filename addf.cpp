@@ -22,7 +22,7 @@ using namespace std;
 //int bic = (ano % 4 == 0) ? 1 : 0;
 
 // variaveis de folga
-bool folgasf1 [365] = {0};
+int folgasf1 [365] = {0};
 QStringList verifArquivo = {0};
 
 
@@ -72,7 +72,7 @@ void addF::on_btn_criar_clicked()
 //    for (int a = ano; a <= 2025; a += 1) {
 
 //        // variaveis de arquivo
-//        QString local = "H:/C++/Qt/Manutencao_ferramentas/";
+//        QString local = "G:/C++/Qt/Manutencao_ferramentas/";
 //        QString pastaAno = QString::number(a) + "/";
 //        QString nomeDoArquivo = "funcionario_";
 //        int bicesto = ((a-1) % 4 == 0) ? 1 : 0;
@@ -95,39 +95,47 @@ void addF::on_btn_criar_clicked()
 //            }
 
 //    }
+    //bloquear botão caso nao preencha nome e equipe
+    if (ui->lEdit_nome->text().isEmpty() == 1){
+        QMessageBox::critical(this, "Erro", "Inserir nome do Funcionário!");
+        return;
+    }     if (ui->lEdit_equipe->text().isEmpty() == 1){
+        QMessageBox::critical(this, "Erro", "Inserir nome da Equipe!");
+        return;
+    } else {
 
-    //variavel calculo ano bicesto
-    QDate dataAtual = QDate::currentDate();
-    int ano = dataAtual.year();
-    int bic = (ano % 4 == 0) ? 1 : 0;
-    int d_ano = 365 + bic;
+        //variavel calculo ano bicesto
+        QDate dataAtual = QDate::currentDate();
+        int ano = dataAtual.year();
+        int bic = (ano % 4 == 0) ? 1 : 0;
+        int d_ano = 365 + bic;
 
-    // variaveis de arquivo
-    int a = ui->spinBox_Ano->value();
-    QString local = "H:/C++/Qt/Manutencao_ferramentas/";
-    QString pastaAno = QString::number(a) + "/";
-    QString pastaAnoAnterior = QString::number(a-1) + "/";
-    QString nomeDoArquivo = "funcionario_";
-    int escala;
+        // variaveis de arquivo
+        int a = ui->spinBox_Ano->value();
+        QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+        QString pastaAno = QString::number(a) + "/";
+        QString pastaAnoAnterior = QString::number(a-1) + "/";
+        QString nomeDoArquivo = "funcionario_";
+        int escala;
 
-    // variaveis QString
-    QString nome = ui->lEdit_nome->text();
-    QString equipe= ui->lEdit_equipe->text();
+        // variaveis QString
+        QString nome = ui->lEdit_nome->text();
+        QString equipe= ui->lEdit_equipe->text();
 
-    int sufixoFunc = ui->cbx_numFunc->currentIndex()+1;
-    if (arquivoExiste(local + pastaAnoAnterior + nomeDoArquivo + QString::number(sufixoFunc))) {
-        escala = lerArquivo(local + pastaAnoAnterior + nomeDoArquivo + QString::number(sufixoFunc));
-        } else {
-        escala = ui->spinBox_Escala->value();
-        }
+        int sufixoFunc = ui->cbx_numFunc->currentIndex()+1;
+        if (arquivoExiste(local + pastaAnoAnterior + nomeDoArquivo + QString::number(sufixoFunc))) {
+            escala = lerArquivo(local + pastaAnoAnterior + nomeDoArquivo + QString::number(sufixoFunc));
+            } else {
+            escala = ui->spinBox_Escala->value()-1;
+            }
 
-    if (arquivoExiste(local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc))) {
-        QMessageBox::warning(this, "Arquivo", "Arquivo já Existe!");
-        } else {
-            gravarMatriz(escala, d_ano);
-            criaArquivo (local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc), nome, equipe);
-        }
-
+        if (arquivoExiste(local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc))) {
+            QMessageBox::warning(this, "Arquivo", "Arquivo já Existe!");
+            } else {
+                gravarMatriz(escala, d_ano);
+                criaArquivo (local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc), nome, equipe);
+            }
+    }
 }
 
 
@@ -140,7 +148,7 @@ void addF::gravarMatriz(int escala, int d_ano)
         verifQuinta.setDate(ano,1,1);
         verifQuinta = verifQuinta.addDays(i);
         if (verifQuinta.dayOfWeek() == 4){
-            folgasf1 [i+1] = 1;
+            folgasf1 [i+1] = 2;
         }
 
     }
@@ -220,7 +228,7 @@ void addF::on_btn_remover_clicked()
     for (int a = ano; a <= 2025; a += 1) {
 
         // variaveis de arquivo
-        QString local = "H:/C++/Qt/Manutencao_ferramentas/";
+        QString local = "G:/C++/Qt/Manutencao_ferramentas/";
         QString pastaAno = QString::number(a) + "/";
         QString nomeDoArquivo = "funcionario_";
 
@@ -254,31 +262,27 @@ int addF::lerArquivo(QString path) {
     if (!arquivo.open(QFile::ReadOnly|QFile::Text))
             {
 //             QMessageBox::warning(this,"Problema!","Problemas na CRIAÇÃO do arquivo Funcionario");
+            return 0;
             }else {
                 QTextStream entrada(&arquivo);
                 QString texto = entrada.readAll();
                 verifArquivo = texto.split(";");
-                int dez31 = verifArquivo[qDiasAno].toInt();
-                int dez30 = verifArquivo[qDiasAno-1].toInt();
-                int dez29 = verifArquivo[qDiasAno-2].toInt();
-                int dez28 = verifArquivo[qDiasAno-3].toInt();
+//                funcionario[i].at(0) == QString::number(1)
+                QString dez31 = verifArquivo[qDiasAno-1].at(0);
+                QString dez30 = verifArquivo[qDiasAno-1-1].at(0);
+                QString dez29 = verifArquivo[qDiasAno-1-2].at(0);
+                QString dez28 = verifArquivo[qDiasAno-1-3].at(0);
+                arquivo.flush();
+                arquivo.close();
 
-                if (dez31 == 1){
-                    arquivo.flush();
-                    arquivo.close();
-                    return 0;
-                } if (dez30 == 1){
-                    arquivo.flush();
-                    arquivo.close();
-                    return 1;
-                } if (dez29 == 1){
-                    arquivo.flush();
-                    arquivo.close();
-                    return 2;
-                } if (dez28 == 1){
-                    arquivo.flush();
-                    arquivo.close();
+                if (dez31 == QString::number(1)){
                     return 3;
+                } if (dez30 == QString::number(1)){
+                    return 2;
+                } if (dez29 == QString::number(1)){
+                    return 1;
+                } if (dez28 == QString::number(1)){
+                    return 0;
                 }
 
             }
