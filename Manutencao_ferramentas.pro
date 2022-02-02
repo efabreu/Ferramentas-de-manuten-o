@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     BotaoIsabella.cpp \
     addf.cpp \
+    ferias.cpp \
     janela_dia.cpp \
     main.cpp \
     mainwindow.cpp
@@ -18,11 +19,13 @@ SOURCES += \
 HEADERS += \
     BotaoIsabella.h \
     addf.h \
+    ferias.h \
     janela_dia.h \
     mainwindow.h
 
 FORMS += \
     addf.ui \
+    ferias.ui \
     janela_dia.ui \
     mainwindow.ui
 

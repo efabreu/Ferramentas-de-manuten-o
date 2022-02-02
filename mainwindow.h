@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "addf.h"
 #include "janela_dia.h"
+#include "ferias.h"
 
 
 
@@ -30,9 +31,13 @@ private slots:
 
     void on_actionAdd_Funcionario_triggered();
 
+    void on_actionFerias_triggered();
+
     void on_pushButton_clicked();
 
     void on_cBox_ano_currentIndexChanged(int index);
+
+    void funcaoRefresh();
 
 
 signals:
@@ -53,6 +58,7 @@ private:
 
     Ui::MainWindow *ui;
     addF *form02;
+    ferias *form03;
 
 };
 #endif // MAINWINDOW_H

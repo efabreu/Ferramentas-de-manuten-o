@@ -22,11 +22,13 @@ private slots:
 
     void onClick_qPushButton();
 
-    void salvarArquivo();
+    void salvarArquivo(QStringList listaSalvar, int ano);
+
+    void on_qDateEdit_userDateChanged(const QDate &date);
 
 private:
     Ui::Janela_Dia *ui;
-    void lerArquivo(int sufixFunc, int anoBotao);
+    QStringList lerArquivo(int sufixFunc, int anoBotao);
 };
 
 #endif // JANELA_DIA_H

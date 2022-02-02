@@ -571,11 +571,24 @@ void MainWindow::on_actionAdd_Funcionario_triggered()
     form02 = new addF(this);
     form02->exec();
 
-    for(int n = 1; n <= 10; n++){
-    lerArquivo(n);
-    }
-    mes = dataAtual.month();
-    alterarMes(mes);
+    funcaoRefresh();
+//    ui->cBox_ano->setCurrentText(QString::number(anoAtual));
+
+//    for(int n = 1; n <= 10; n++){
+//    lerArquivo(n);
+//    }
+//    mes = dataAtual.month();
+//    alterarMes(mes);
+}
+
+void MainWindow::on_actionFerias_triggered()
+{
+    form03 = new ferias(this);
+    form03->exec();
+
+    funcaoRefresh();
+//    ui->cBox_ano->setCurrentText(QString::number(anoAtual));
+
 }
 
 void MainWindow::onClick_qPushButton(int diaBotao, int sufixFunc)
@@ -712,7 +725,7 @@ void MainWindow::on_cBox_ano_currentIndexChanged(int index)
     for(int n = 1; n <= 10; n++){
     lerArquivo(n);
     }
-    mes = 1;
+    mes = dataAtual.month();
     ui->lbl_mes->setText(alterarMes(mes));
     QString anoQstr = ui->cBox_ano->currentText();
     ano = anoQstr.toInt();
@@ -723,6 +736,7 @@ void MainWindow::abreJanelaDia(int anoBotao, int posicaoBotao, int sufixFunc)
 {
     Janela_Dia form3(this, anoBotao, posicaoBotao, sufixFunc);
     form3.exec();
+
     lerArquivo(sufixFunc);
     mes = QDate(anoBotao, 1, 1).addDays(posicaoBotao).month();
     alterarMes(mes);
@@ -883,4 +897,11 @@ void MainWindow::limparLayoutCalendario()
         delete child->widget();
         delete child;
     }
+}
+
+// limpar tela
+void MainWindow::funcaoRefresh()
+{
+    ui->cBox_ano->setCurrentText(QString::number(anoAtual-1));
+    ui->cBox_ano->setCurrentText(QString::number(anoAtual));
 }
