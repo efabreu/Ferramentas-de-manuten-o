@@ -14,6 +14,7 @@ SOURCES += \
     criarfolga.cpp \
     ferias.cpp \
     janela_dia.cpp \
+    janelalegenda.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -23,6 +24,7 @@ HEADERS += \
     criarfolga.h \
     ferias.h \
     janela_dia.h \
+    janelalegenda.h \
     mainwindow.h
 
 FORMS += \
@@ -30,6 +32,7 @@ FORMS += \
     criarfolga.ui \
     ferias.ui \
     janela_dia.ui \
+    janelalegenda.ui \
     mainwindow.ui
 
 # Default rules for deployment.

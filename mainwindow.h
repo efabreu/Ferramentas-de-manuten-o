@@ -2,10 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPrinter>
 #include "addf.h"
 #include "janela_dia.h"
 #include "ferias.h"
 #include "criarfolga.h"
+#include "janelalegenda.h"
 
 
 
@@ -47,6 +49,12 @@ private slots:
 
     void on_actionImprimir_triggered();
 
+    void on_comboBox_mes_activated(int index);
+
+    void print(QPrinter* printer);
+
+    void on_pushButton_legenda_clicked();
+
 signals:
 
     void clicked(int diaBotao);
@@ -67,6 +75,7 @@ private:
     addF *form02;
     ferias *form03;
     criarFolga *form04;
+    janelaLegenda *form05;
 
 };
 #endif // MAINWINDOW_H

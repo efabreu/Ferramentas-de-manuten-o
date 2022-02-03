@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>339</width>
-    <height>341</height>
+    <height>356</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,7 +50,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -96,6 +96,29 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label_obs">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>130</y>
+     <width>256</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Observações:</string>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_obs">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>150</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>

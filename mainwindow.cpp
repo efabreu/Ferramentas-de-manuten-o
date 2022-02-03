@@ -14,8 +14,9 @@
 #include <QFile>
 #include <QMessageBox>
 #include <QPixmap>
-#include <QPrinter>
 #include <QPrintDialog>
+#include <QPainter>
+#include <QPrintPreviewDialog>
 
 
 
@@ -310,11 +311,19 @@ QString MainWindow::alterarMes(int mes)
     return nomeDoMes;
 }
 
+void MainWindow::on_comboBox_mes_activated(int index)
+{
+    mes = index+1;
+    ui->comboBox_mes->setCurrentText(alterarMes(mes));
+//    ui->lbl_mes->setText(alterarMes(mes));
+}
+
 void MainWindow::on_pushButton_menos_clicked()
 {
     if (mes > 1) {
     mes--;
-    ui->lbl_mes->setText(alterarMes(mes));
+    ui->comboBox_mes->setCurrentText(alterarMes(mes));
+//    ui->lbl_mes->setText(alterarMes(mes));
     }else {
 
     }
@@ -325,7 +334,8 @@ void MainWindow::on_pushButton_mais_clicked()
 {
     if (mes < 12) {
     mes++;
-    ui->lbl_mes->setText(alterarMes(mes));
+    ui->comboBox_mes->setCurrentText(alterarMes(mes));
+//    ui->lbl_mes->setText(alterarMes(mes));
     }else {
         }
 }
@@ -512,7 +522,8 @@ void MainWindow::on_cBox_ano_currentIndexChanged(int index)
     ano = anoQstr.toInt();
     bic = (ano % 4 == 0) ? 1 : 0;
     mes = dataAtual.month();
-    ui->lbl_mes->setText(alterarMes(mes));
+    ui->comboBox_mes->setCurrentText(alterarMes(mes));
+//    ui->lbl_mes->setText(alterarMes(mes));
 
 }
 
@@ -526,10 +537,6 @@ void MainWindow::abreJanelaDia(int anoBotao, int posicaoBotao, int sufixFunc)
     alterarMes(mes);
 }
 
-//void MainWindow::clicked()
-//{
-
-//}
 
 void MainWindow::modificaBotoes(int cDiasMes, int qDiasMes, int sufixFunc, QStringList funcionario, QLayout *layout1)
 {
@@ -582,7 +589,7 @@ void MainWindow::modificaBotoes(int cDiasMes, int qDiasMes, int sufixFunc, QStri
                     qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
                                                ";color: rgb(250, 250, 250);background-color: rgb(0,0,139);}");
                     }if (funcionario[i].at(0) == QString::number(6)) {                          //dia de feriado ou folga adicional
-                    qPushButton->setText(funcionario[i].mid(1,-1));
+                    qPushButton->setText(funcionario[i].mid(1,1));
                     qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
                                                ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
                     }
@@ -651,6 +658,21 @@ void MainWindow::funcaoRefresh()
     ui->cBox_ano->setCurrentText(QString::number(anoAtual));
 }
 
+void MainWindow::print( QPrinter* printer)
+{
+    QPainter painter(printer);
+    QWidget *tela = ui->centralwidget;
+     QRect rect = painter.viewport();
+    double xscale = rect.width() / double(tela->width());
+    double yscale = rect.height() / double(tela->height());
+    double scale = qMin(xscale, yscale);
+    painter.translate(rect.center());
+    painter.scale(scale, scale);
+    painter.translate(-tela->width()/ 2, -tela->height()/ 2);
+
+    tela->render(&painter);
+}
+
 void MainWindow::on_actionImprimir_triggered()
 {
 //    QPixmap originalPixmap;
@@ -662,5 +684,51 @@ void MainWindow::on_actionImprimir_triggered()
 //    QPrintDialog dialog(&impressora,this);
 //    if (dialog.exec() == QDialog::Rejected) return;
 //    screen->print;
+
+//    btn.show();
+
+//    QWidget *tela = ui->centralwidget;
+//    QPrinter impressora(QPrinter::HighResolution);
+//    QMarginsF margens;
+//    margens.isNull();
+
+//    impressora.setPrinterName("Impressora");
+//    QPrintDialog dialog(&impressora,this);
+//    if (dialog.exec() == QDialog::Rejected) return;
+
+//    impressora.setOutputFormat(QPrinter::PdfFormat);
+//    impressora.setOutputFileName("output.pdf");
+//    impressora.setPageMargins(margens, Millimeter);
+//    impressora.setFullPage(false);
+
+//    QPainter painter(&impressora);
+
+//    double xscale = impressora.pageRect(Millimeter).width() / double(tela.width());
+//    double yscale = impressora.pageRect(Millimeter).height() / double(tela.height());
+//    double scale = qMin(xscale, yscale);
+//    painter.translate(printer.paperRect().center());
+//    painter.scale(scale, scale);
+//    painter.translate(-tela.width()/ 2, -tela.height()/ 2);
+//    tela->render(&painter);
+
+//    QPainter printTela;
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setFullPage( true );
+    QPrintPreviewDialog preview(&printer, this);
+    preview.setWindowFlags ( Qt::Window );
+    connect(&preview, SIGNAL(paintRequested(QPrinter* )), SLOT(print(QPrinter* )));
+    preview.exec();
+
+}
+
+
+
+
+
+void MainWindow::on_pushButton_legenda_clicked()
+{
+    form05 = new janelaLegenda(this);
+    form05->setWindowTitle("Legenda");
+    form05->exec();
 }
 

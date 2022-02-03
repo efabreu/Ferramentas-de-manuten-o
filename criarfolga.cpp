@@ -111,11 +111,12 @@ void criarFolga::on_pushButton_criarFolga_clicked()
 {
     int posicaoDia = dataSelecionada.dayOfYear()-1;
     int sufixFunc = ui->comboBox_funcionario->currentIndex()+1;
+    QString observacao = ui->plainTextEdit_obs->toPlainText();
     if (listaFuncionario[posicaoDia].at(0) != QString::number(0)){
         QMessageBox::warning(this,"Problema!","O funcionário já está de folga no dia selecionado.");
         return;
     }
-    listaFuncionario[posicaoDia] = "6F";
+    listaFuncionario[posicaoDia] = "6F"+observacao;
     salvarArquivo(sufixFunc, dataSelecionada.year(), listaFuncionario);
     QMessageBox::information(this,"Folga adicionada","Folga adicionada no dia "+dataSelecionada.toString("dd/MM/yy")+" com sucesso!");
     criarFolga::close();

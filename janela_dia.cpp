@@ -29,6 +29,8 @@ Janela_Dia::Janela_Dia(QWidget *parent, int anoBotao, int posicaoBotao, int sufi
 //    ui->lblDia_Btn->setText(QString::number(posicaoBotao));
 //    ui->lblAno_Btn->setText(QString::number(anoBotao));
 //    QDate data;
+    ui->label_obs->setHidden(1);
+    ui->textBrowser_obs->setHidden(1);
     dataDia = dataTroca = QDate(anoBotao, 1, 1).addDays(posicaoBotao);
     this->setWindowTitle("Dados do Dia: "+dataDia.toString("dd/MM/yyyy"));
     funcionario = sufixFunc;
@@ -110,6 +112,9 @@ Janela_Dia::Janela_Dia(QWidget *parent, int anoBotao, int posicaoBotao, int sufi
                             ui->qLabel->setHidden(true);
                             ui->qDateEdit->setHidden(true);
                             ui->qCalendarWidget->setHidden(true);
+                            ui->label_obs->setHidden(0);
+                            ui->textBrowser_obs->setHidden(0);
+                            ui->textBrowser_obs->setText(func[dataDia.dayOfYear()-1].mid(2,-1));
                             break;
                         }
 
