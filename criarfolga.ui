@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>criarFolga</class>
+ <widget class="QDialog" name="criarFolga">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>330</width>
+    <height>310</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>314</width>
+     <height>294</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" colspan="2">
+     <widget class="QComboBox" name="comboBox_funcionario">
+      <item>
+       <property name="text">
+        <string>Funcionário 01</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 02</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 03</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 04</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 05</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 06</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 07</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 08</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 09</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Funcionário 10</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QLabel" name="label_tituloNome">
+      <property name="text">
+       <string>Nome</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="label_tituloEquipe">
+      <property name="text">
+       <string>Equipe</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_Nome">
+      <property name="text">
+       <string>Nome</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="label_Equipe">
+      <property name="text">
+       <string>Equipe</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QDateEdit" name="dateEdit"/>
+    </item>
+    <item row="3" column="2">
+     <widget class="QPushButton" name="pushButton_criarFolga">
+      <property name="text">
+       <string>Criar Folga</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0" colspan="3">
+     <widget class="QCalendarWidget" name="calendarioWidget"/>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

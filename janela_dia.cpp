@@ -24,10 +24,13 @@ Janela_Dia::Janela_Dia(QWidget *parent, int anoBotao, int posicaoBotao, int sufi
     ui(new Ui::Janela_Dia)
 {
     ui->setupUi(this);
+    QPixmap trocaFolgaIcon(":/icones/Icons/trocaFolgaIcon.png");
+    this->setWindowIcon(trocaFolgaIcon);
 //    ui->lblDia_Btn->setText(QString::number(posicaoBotao));
 //    ui->lblAno_Btn->setText(QString::number(anoBotao));
 //    QDate data;
     dataDia = dataTroca = QDate(anoBotao, 1, 1).addDays(posicaoBotao);
+    this->setWindowTitle("Dados do Dia: "+dataDia.toString("dd/MM/yyyy"));
     funcionario = sufixFunc;
     QString dataTexto = dataDia.toString("dd/MM/yyyy");
     ui->lblDia_Btn->setText(dataTexto);
@@ -125,7 +128,7 @@ QStringList Janela_Dia::lerArquivo(int sufixFunc, int anoBotao)
 {
     QStringList lista = {0};
     // variaveis de arquivo
-    QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
     QString pastaAno = QString::number(anoBotao) + "/";
     QString nomeDoArquivo = "funcionario_"+QString::number(sufixFunc);
     // le arquivo ano atual
@@ -199,7 +202,7 @@ void Janela_Dia::onClick_qPushButton()
 void Janela_Dia::salvarArquivo(QStringList listaSalvar, int ano)
 {
     // variaveis de arquivo
-    QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
     QString pastaAno = QString::number(ano) + "/";
     QString nomeDoArquivo = "funcionario_"+QString::number(funcionario);
     QFile arquivo (local + pastaAno + nomeDoArquivo);

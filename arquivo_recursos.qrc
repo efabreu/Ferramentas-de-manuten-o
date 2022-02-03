@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/icones">
+        <file>Icons/addFeriasIcon.png</file>
+        <file>Icons/addFolgaIcon.png</file>
+        <file>Icons/addFuncionarioIcon.png</file>
+        <file>Icons/mainIcone.png</file>
+        <file>Icons/nextIcon.png</file>
+        <file>Icons/prevIcon.png</file>
+        <file>Icons/trocaFolgaIcon.png</file>
+        <file>Icons/mainIcone2.png</file>
+    </qresource>
+</RCC>

@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     BotaoIsabella.cpp \
     addf.cpp \
+    criarfolga.cpp \
     ferias.cpp \
     janela_dia.cpp \
     main.cpp \
@@ -19,12 +20,14 @@ SOURCES += \
 HEADERS += \
     BotaoIsabella.h \
     addf.h \
+    criarfolga.h \
     ferias.h \
     janela_dia.h \
     mainwindow.h
 
 FORMS += \
     addf.ui \
+    criarfolga.ui \
     ferias.ui \
     janela_dia.ui \
     mainwindow.ui
@@ -33,3 +36,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    arquivo_recursos.qrc

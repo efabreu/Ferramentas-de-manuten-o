@@ -13,6 +13,8 @@ ferias::ferias(QWidget *parent) :
     ui(new Ui::ferias)
 {
     ui->setupUi(this);
+    QPixmap addFeriasIcon(":/icones/Icons/addFeriasIcon.png");
+    this->setWindowIcon(addFeriasIcon);
     ui->dateEdit_inicio->setDate(QDate::currentDate());
     ui->spinBox_duracao->setRange(5,30);
     ui->comboBox_funcionario->setCurrentIndex(-1);
@@ -43,7 +45,7 @@ void ferias::on_spinBox_duracao_valueChanged(int arg1)
 void ferias::lerArquivo(int sufixFunc, int anoBotao)
 {
     // variaveis de arquivo
-    QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
     QString pastaAno = QString::number(anoBotao) + "/";
     QString pastaAnoSeguinte = QString::number(anoBotao+1) + "/";
     QString nomeDoArquivo = "funcionario_"+QString::number(sufixFunc);
@@ -60,7 +62,7 @@ void ferias::lerArquivo(int sufixFunc, int anoBotao)
         QString texto = entrada.readAll();
         funcAnoInicial = texto.split(";");
         int qDiasAno = QDate::currentDate().daysInYear();
-        ui->label_nome_2->setText(funcAnoInicial[qDiasAno+1]);
+        ui->label_nome_2->setText(funcAnoInicial[qDiasAno]);
 
     }
     arquivo.flush();
@@ -95,11 +97,10 @@ void ferias::on_comboBox_funcionario_currentIndexChanged(int index)
 void ferias::escreveFerias(int posicaoDiaUm, int qDiasAno)
 {
     int qtdFerias = ui->spinBox_duracao->value();
-    int qtdAnoSeguinte;
     int qtdFeriasAux = qDiasAno - posicaoDiaUm;
 
     if (qtdFeriasAux > qtdFerias){
-        qtdFeriasAux = qtdFerias;
+        qtdFeriasAux = qtdFerias-1;
     }
     for (int i = 0; i <= qtdFeriasAux; i += 1) {
             funcAnoInicial [posicaoDiaUm+i-1] = "5Férias";;
@@ -117,7 +118,7 @@ void ferias::escreveFerias(int posicaoDiaUm, int qDiasAno)
 void ferias::salvarArquivo(int sufixFunc, int anoBotao, QStringList listaFunc)
 {
     // variaveis de arquivo
-    QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
     QString pastaAno = QString::number(anoBotao) + "/";
     QString nomeDoArquivo = "funcionario_"+QString::number(sufixFunc);
     QFile arquivo (local + pastaAno + nomeDoArquivo);

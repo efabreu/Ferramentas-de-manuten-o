@@ -14,13 +14,6 @@
 
 using namespace std;
 
-//inserir o mes
-//QDate dataAtual = QDate::currentDate();
-//int mes = dataAtual.month();
-//int anoAtual = dataAtual.year();
-//int ano = anoAtual;
-//int bic = (ano % 4 == 0) ? 1 : 0;
-
 // variaveis de folga
 int folgasf1 [365] = {0};
 QStringList verifArquivo = {0};
@@ -31,6 +24,8 @@ addF::addF(QWidget *parent) :
     ui(new Ui::addF)
 {
     ui->setupUi(this);
+    QPixmap addFuncionarioIcone(":/icones/Icons/addFuncionarioIcon.png");
+    this->setWindowIcon(addFuncionarioIcone);
     ui->cbx_numFunc->setItemData(0, 3); //funcionário 01, escala 4
     ui->cbx_numFunc->setItemData(1, 0); //funcionário 02, escala 1
     ui->cbx_numFunc->setItemData(2, 1); //funcionário 03, escala 2
@@ -51,8 +46,8 @@ addF::addF(QWidget *parent) :
     ui->spinBox_Escala->setValue(1);
 
     //QString local_2 = QDir::rootPath();
-    QString local_2 = QCoreApplication::applicationDirPath();
-    ui->diretorio->setText(local_2);
+//    QString local_2 = QCoreApplication::applicationDirPath();
+//    ui->diretorio->setText(local_2);
 
 }
 
@@ -63,38 +58,6 @@ addF::~addF()
 
 void addF::on_btn_criar_clicked()
 {
-//    //variavel calculo ano bicesto
-//    QDate dataAtual = QDate::currentDate();
-//    int ano = dataAtual.year();
-//    int bic = (ano % 4 == 0) ? 1 : 0;
-//    int d_ano = 365 + bic;
-
-//    for (int a = ano; a <= 2025; a += 1) {
-
-//        // variaveis de arquivo
-//        QString local = "G:/C++/Qt/Manutencao_ferramentas/";
-//        QString pastaAno = QString::number(a) + "/";
-//        QString nomeDoArquivo = "funcionario_";
-//        int bicesto = ((a-1) % 4 == 0) ? 1 : 0;
-//        int compensacao = ((a - dataAtual.year()) == 0) ? 0 : 1;
-
-//        // variaveis QString
-//        QString nome = ui->lEdit_nome->text();
-//        QString equipe= ui->lEdit_equipe->text();
-
-//        QVariant esc = ui->cbx_numFunc->currentData();
-//        int escala = esc.toInt();
-//        int sufixoFunc = ui->cbx_numFunc->currentIndex()+1;
-
-//        if (arquivoExiste(local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc))) {
-//            QMessageBox::warning(this, "Arquivo", "Arquivo já Existe!");
-//            break;
-//            } else {
-//                gravarMatriz(escala - 1 - (a - dataAtual.year()) - bicesto - compensacao, d_ano);
-//                criaArquivo (local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc), nome, equipe);
-//            }
-
-//    }
     //bloquear botão caso nao preencha nome e equipe
     if (ui->lEdit_nome->text().isEmpty() == 1){
         QMessageBox::critical(this, "Erro", "Inserir nome do Funcionário!");
@@ -106,13 +69,12 @@ void addF::on_btn_criar_clicked()
 
         //variavel calculo ano bicesto
         QDate dataAtual = QDate::currentDate();
-        int ano = dataAtual.year();
-        int bic = (ano % 4 == 0) ? 1 : 0;
-        int d_ano = 365 + bic;
+//        int ano = dataAtual.year();
+        int d_ano = dataAtual.daysInYear();
 
         // variaveis de arquivo
         int a = ui->spinBox_Ano->value();
-        QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+        QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
         QString pastaAno = QString::number(a) + "/";
         QString pastaAnoAnterior = QString::number(a-1) + "/";
         QString nomeDoArquivo = "funcionario_";
@@ -172,9 +134,7 @@ void addF::criaArquivo(QString path, QString nome, QString equipe) {
 
     //variavel calculo ano bicesto
     QDate dataAtual = QDate::currentDate();
-    int ano = dataAtual.year();
-    int bic = (ano % 4 == 0) ? 1 : 0;
-    int d_ano = 365 + bic;
+    int d_ano = dataAtual.daysInYear();
 
     if (!arquivo.open(QFile::WriteOnly|QFile::Text))
             {
@@ -201,9 +161,7 @@ void addF::removeArquivo(QString path) {
 
     //variavel calculo ano bicesto
     QDate dataAtual = QDate::currentDate();
-    int ano = dataAtual.year();
-    int bic = (ano % 4 == 0) ? 1 : 0;
-    int d_ano = 365 + bic;
+    int d_ano = dataAtual.daysInYear();
 
     if (!arquivo.open(QFile::WriteOnly|QFile::Text))
             {
@@ -221,31 +179,55 @@ void addF::removeArquivo(QString path) {
 
 void addF::on_btn_remover_clicked()
 {
-    //variavel calculo ano bicesto
-    QDate dataAtual = QDate::currentDate();
-    int ano = dataAtual.year();
 
-    for (int a = ano; a <= 2025; a += 1) {
+    // variaveis de arquivo
+    int a = ui->spinBox_Ano->value();
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
+    QString pastaAno = QString::number(a) + "/";
+    QString nomeDoArquivo = "funcionario_";
 
-        // variaveis de arquivo
-        QString local = "G:/C++/Qt/Manutencao_ferramentas/";
-        QString pastaAno = QString::number(a) + "/";
-        QString nomeDoArquivo = "funcionario_";
+    int sufixoFunc = ui->cbx_numFunc->currentIndex()+1;
 
-        int sufixoFunc = ui->cbx_numFunc->currentIndex()+1;
+    QMessageBox::StandardButton resposta;
+    resposta = QMessageBox::question(this,"Prosseguir?","Deseja excluir dados do " + ui->cbx_numFunc->currentText() +"?",QMessageBox::Yes|QMessageBox::No);
 
-        if (arquivoExiste(local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc))) {
-         removeArquivo (local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc));
-        } else {
-            QMessageBox::warning(this, "Arquivo", "Arquivo não Existe!");
-             }
+    if (resposta == QMessageBox::No) {
+        return;
     }
+
+    if (arquivoExiste(local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc))) {
+     removeArquivo (local + pastaAno + nomeDoArquivo + QString::number(sufixoFunc));
+    } else {
+        QMessageBox::warning(this, "Arquivo", "Arquivo não Existe!");
+         }
+
 }
 
 
 void addF::on_cbx_numFunc_currentIndexChanged(int index)
 {
     ui->btn_criar->setEnabled(1);
+
+    //variavel calculo ano bicesto
+    QDate dataAtual = QDate::currentDate();
+//    int ano = dataAtual.year();
+    int d_ano = dataAtual.daysInYear();
+
+    // variaveis de arquivo
+    int a = ui->spinBox_Ano->value();
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
+    QString pastaAno = QString::number(a) + "/";
+    QString nomeDoArquivo = "funcionario_";
+
+    //ler arquivo caso exista
+    if (arquivoExiste(local + pastaAno + nomeDoArquivo + QString::number(index+1))) {
+        lerArquivo(local + pastaAno + nomeDoArquivo + QString::number(index+1));
+        ui->lEdit_nome->setText(verifArquivo[d_ano]);
+        ui->lEdit_equipe->setText(verifArquivo[d_ano+1]);
+        }else{
+        ui->lEdit_nome->setText("");
+        ui->lEdit_equipe->setText("");
+    }
 }
 
 int addF::lerArquivo(QString path) {
@@ -256,8 +238,6 @@ int addF::lerArquivo(QString path) {
     QDate dataAtual;
     dataAtual.setDate(ano,1,1);
     int qDiasAno = dataAtual.daysInYear();
-    int bic = (ano % 4 == 0) ? 1 : 0;
-    int d_ano = 365 + bic;
 
     if (!arquivo.open(QFile::ReadOnly|QFile::Text))
             {
@@ -286,10 +266,5 @@ int addF::lerArquivo(QString path) {
                 }
 
             }
-//        QMessageBox::information(this,"Arquivo Criado", "O arquivo foi criado com sucesso!");
-//        arquivo.flush();
-//        arquivo.close();
-//        for (int i = 0; i <= d_ano; i += 1) {
-//            folgasf1 [i] = 0;
-//        }
+
 }

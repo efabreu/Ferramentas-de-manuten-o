@@ -5,6 +5,7 @@
 #include "addf.h"
 #include "janela_dia.h"
 #include "ferias.h"
+#include "criarfolga.h"
 
 
 
@@ -33,12 +34,18 @@ private slots:
 
     void on_actionFerias_triggered();
 
+    void on_actionAdicionar_Folga_triggered();
+
+    void on_actionSair_triggered();
+
     void on_pushButton_clicked();
 
     void on_cBox_ano_currentIndexChanged(int index);
 
     void funcaoRefresh();
 
+
+    void on_actionImprimir_triggered();
 
 signals:
 
@@ -59,6 +66,7 @@ private:
     Ui::MainWindow *ui;
     addF *form02;
     ferias *form03;
+    criarFolga *form04;
 
 };
 #endif // MAINWINDOW_H

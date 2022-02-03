@@ -13,6 +13,9 @@
 #include <QDate>
 #include <QFile>
 #include <QMessageBox>
+#include <QPixmap>
+#include <QPrinter>
+#include <QPrintDialog>
 
 
 
@@ -44,6 +47,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("Escala de Manutenção");
+    QPixmap mainIcone(":/icones/Icons/mainIcone2.png");
+    this->setWindowIcon(mainIcone);
     ui->cBox_ano->setCurrentText(QString::number(anoAtual));
    // for(int n = 1; n <= 10; n++){
    // lerArquivo(n);
@@ -162,248 +168,6 @@ void MainWindow::mostrarFolgas01(int cDiasMes, int qDiasMes, int sufixFunc)
                     break;
             }
 
-
-
-
-//        for (int i =cDiasMes-1; i < cDiasMes+qDiasMes-1 ; i++ ) {
-//            BotaoIsabella * qPushButton = new BotaoIsabella(i, sufixFunc, this);
-//            connect(qPushButton, SIGNAL(clicked(int, int)), this, SLOT(onClick_qPushButton(int, int)));
-
-
-
-//            switch(sufixFunc){
-//                    case 1:
-//                    if (func1[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari01->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari01->addWidget(qPushButton);
-//                            if (func1[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func1[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func1[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f1->setText(func1[365]);
-//                            ui->lbl_e1->setText(func1[366]);
-//                            break;
-//                    }
-
-//                    case 2:
-//                    if (func2[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari02->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari02->addWidget(qPushButton);
-//                            if (func2[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func2[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func2[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f2->setText(func2[365]);
-//                            ui->lbl_e2->setText(func2[366]);
-//                            break;
-//                    }
-
-//                    case 3:
-//                    if (func3[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari03->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari03->addWidget(qPushButton);
-//                            if (func3[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func3[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func3[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f3->setText(func3[365]);
-//                            ui->lbl_e3->setText(func3[366]);
-//                            break;
-//                    }
-
-//                    case 4:
-//                    if (func4[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari04->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari04->addWidget(qPushButton);
-//                            if (func4[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func4[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func4[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f4->setText(func4[365]);
-//                            ui->lbl_e4->setText(func4[366]);
-//                            break;
-//                    }
-
-//                    case 5:
-//                    if (func5[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari05->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari05->addWidget(qPushButton);
-//                            if (func5[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func5[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func5[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f5->setText(func5[365]);
-//                            ui->lbl_e5->setText(func5[366]);
-//                            break;
-//                    }
-
-//                    case 6:
-//                    if (func6[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari06->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari06->addWidget(qPushButton);
-//                            if (func6[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func6[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func6[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f6->setText(func6[365]);
-//                            ui->lbl_e6->setText(func6[366]);
-//                            break;
-//                    }
-
-//                    case 7:
-//                    if (func7[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari07->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari07->addWidget(qPushButton);
-//                            if (func7[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func7[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func7[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f7->setText(func7[365]);
-//                            ui->lbl_e7->setText(func7[366]);
-//                            break;
-//                    }
-//                    case 8:
-//                    if (func8[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari08->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari08->addWidget(qPushButton);
-//                            if (func8[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func8[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func8[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f8->setText(func8[365]);
-//                            ui->lbl_e8->setText(func8[366]);
-//                            break;
-//                    }
-
-//                    case 9:
-//                    if (func9[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari09->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari09->addWidget(qPushButton);
-//                            if (func9[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func9[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func9[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f9->setText(func9[365]);
-//                            ui->lbl_e9->setText(func9[366]);
-//                            break;
-//                    }
-
-//                    case 10:
-//                    if (func10[0] == "NAOEXISTE") {
-//                        ui->hlyt_funcionari10->addWidget(qPushButton);
-//                        qPushButton->setText("Funcionário não declarado em arquivo!");
-//                        qPushButton->setFixedWidth(800);
-//                        qPushButton->setFlat(1);
-//                        return ;
-//                    } else{
-//                            ui->hlyt_funcionari10->addWidget(qPushButton);
-//                            if (func10[i].at(0) == QString::number(1)){
-//                                qPushButton->setText(func10[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
-//                            }else{
-//                                qPushButton->setText(func10[i].mid(1,-1));
-//                                qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
-//                                                           ";color: rgb(0, 0, 0);background-color: rgb(247, 247, 247);}");
-//                                }
-//                            ui->lbl_f10->setText(func10[365]);
-//                            ui->lbl_e10->setText(func10[366]);
-//                            break;
-//                    }
-
-//            }
-
-//        }
 }
 
 void MainWindow::mostrarDiasSem(int qDiasMes)
@@ -569,6 +333,7 @@ void MainWindow::on_pushButton_mais_clicked()
 void MainWindow::on_actionAdd_Funcionario_triggered()
 {
     form02 = new addF(this);
+    form02->setWindowTitle("Adicionar Funcionário");
     form02->exec();
 
     funcaoRefresh();
@@ -584,10 +349,28 @@ void MainWindow::on_actionAdd_Funcionario_triggered()
 void MainWindow::on_actionFerias_triggered()
 {
     form03 = new ferias(this);
+    form03->setWindowTitle("Adicionar Férias");
     form03->exec();
 
     funcaoRefresh();
 //    ui->cBox_ano->setCurrentText(QString::number(anoAtual));
+
+}
+
+void MainWindow::on_actionAdicionar_Folga_triggered()
+{
+    form04 = new criarFolga(this);
+    form04->setWindowTitle("Adicionar Folga Extra");
+    form04->exec();
+
+    funcaoRefresh();
+
+}
+
+
+void MainWindow::on_actionSair_triggered()
+{
+    MainWindow::close();
 
 }
 
@@ -613,7 +396,7 @@ void MainWindow::onClick_qPushButton(int diaBotao, int sufixFunc)
 void MainWindow::lerArquivo(int sufixFunc)
 {
     // variaveis de arquivo
-    QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
     QString pastaAno = ui->cBox_ano->currentText()+"/";
     QString nomeDoArquivo = "funcionario_"+QString::number(sufixFunc);
     QFile arquivo (local + pastaAno + nomeDoArquivo);
@@ -696,7 +479,7 @@ void MainWindow::lerArquivo(int sufixFunc)
 void MainWindow::salvarArquivo()
 {
     // variaveis de arquivo
-    QString local = "G:/C++/Qt/Manutencao_ferramentas/";
+    QString local = "M:/Técnica/01- MANUTENÇÃO_INSTALAÇÕES/2 - MINAS ARENA/3 - MANUTENÇÃO PREVENTIVAS/Escala 3.1/DADOS ESCALAS/";
     QString nomeDoArquivo = "teste";
 
     QFile arquivo (local + nomeDoArquivo);
@@ -725,11 +508,12 @@ void MainWindow::on_cBox_ano_currentIndexChanged(int index)
     for(int n = 1; n <= 10; n++){
     lerArquivo(n);
     }
-    mes = dataAtual.month();
-    ui->lbl_mes->setText(alterarMes(mes));
     QString anoQstr = ui->cBox_ano->currentText();
     ano = anoQstr.toInt();
     bic = (ano % 4 == 0) ? 1 : 0;
+    mes = dataAtual.month();
+    ui->lbl_mes->setText(alterarMes(mes));
+
 }
 
 void MainWindow::abreJanelaDia(int anoBotao, int posicaoBotao, int sufixFunc)
@@ -803,47 +587,8 @@ void MainWindow::modificaBotoes(int cDiasMes, int qDiasMes, int sufixFunc, QStri
                                                ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
                     }
 
-//                switch(funcionario[i].at(0)){
+              }
 
-//                    case 1:
-
-//                        break;
-//                    case 2:
-
-//                        break;
-//                    case 3:
-
-//                        break;
-//                    case 4:
-
-//                        break;
-//                    case 5:
-
-//                        break;
-//                    case 6:
-
-//                        break;
-//                    case 7:
-
-//                        break;
-//                    case 8:
-
-//                        break;
-//                    case 9:
-
-//                        break;
-//                    case 10:
-
-//                        break;
-
-//                }
-
-
-
-                    }
-
-//                ui->lbl_f1->setText(funcionario[365]);
-//                ui->lbl_e1->setText(funcionario[366]);
         }
     QLabel * qLabelNome = new QLabel;
     ui->gridLayout->addWidget(qLabelNome,sufixFunc,1);
@@ -905,3 +650,17 @@ void MainWindow::funcaoRefresh()
     ui->cBox_ano->setCurrentText(QString::number(anoAtual-1));
     ui->cBox_ano->setCurrentText(QString::number(anoAtual));
 }
+
+void MainWindow::on_actionImprimir_triggered()
+{
+//    QPixmap originalPixmap;
+//    QScreen *screen = QGuiApplication::primaryScreen();
+//    originalPixmap = screen->grabWindow(0);
+
+//    QPrinter impressora;
+//    impressora.setPrinterName("Impressora");
+//    QPrintDialog dialog(&impressora,this);
+//    if (dialog.exec() == QDialog::Rejected) return;
+//    screen->print;
+}
+
