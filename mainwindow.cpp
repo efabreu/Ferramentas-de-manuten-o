@@ -592,6 +592,10 @@ void MainWindow::modificaBotoes(int cDiasMes, int qDiasMes, int sufixFunc, QStri
                     qPushButton->setText(funcionario[i].mid(1,1));
                     qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
                                                ";color: rgb(0, 0, 0);background-color: rgb(255, 0, 0);}");
+                    }if (funcionario[i].at(0) == QString::number(7)) {                          //dia de trabalho com observacao
+                    qPushButton->setText(funcionario[i].mid(1,3));
+                    qPushButton->setStyleSheet("QPushButton{font-size: 8px;font-family: Arial"
+                                               ";color: rgb(0, 0, 0);background-color: rgb(255,255,0);}");
                     }
 
               }
@@ -730,5 +734,15 @@ void MainWindow::on_pushButton_legenda_clicked()
     form05 = new janelaLegenda(this);
     form05->setWindowTitle("Legenda");
     form05->exec();
+}
+
+
+void MainWindow::on_actionAdicionar_Observa_o_triggered()
+{
+    form06 = new adicionarObservacao(this);
+    form06->setWindowTitle("Adicionar Observação");
+    form06->exec();
+
+    funcaoRefresh();
 }
 

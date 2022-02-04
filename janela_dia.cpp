@@ -117,6 +117,16 @@ Janela_Dia::Janela_Dia(QWidget *parent, int anoBotao, int posicaoBotao, int sufi
                             ui->textBrowser_obs->setText(func[dataDia.dayOfYear()-1].mid(2,-1));
                             break;
                         }
+                        case 7:{ //dia de trabalho com observação
+                            ui->lblFolga->setText("Dia de trabalho com observação");
+                            ui->qLabel->setHidden(true);
+                            ui->qDateEdit->setHidden(true);
+                            ui->qCalendarWidget->setHidden(true);
+                            ui->label_obs->setHidden(0);
+                            ui->textBrowser_obs->setHidden(0);
+                            ui->textBrowser_obs->setText(func[dataDia.dayOfYear()-1].mid(4,-1));
+                            break;
+                        }
 
                     }
 
@@ -170,6 +180,7 @@ void Janela_Dia::onClick_qPushButton()
     int posicaoPara = dataTroca.dayOfYear() - 1;
     int anoDe = dataDia.year();
     int anoPara = dataTroca.year();
+    QString verificarFolga;
     func[posicaoDe] = QString::number(3)+"T("+dataTroca.toString("dd/MM")+")";
     if (funcAnoAnt[0] == "Não existe" && anoDe - anoPara == 1 ) {
         QMessageBox::warning(this,"Problema!","Não existe arquivo para dia destino da folga.");
@@ -181,15 +192,23 @@ void Janela_Dia::onClick_qPushButton()
     }
     switch (anoDe - anoPara){
         case 0:
+            verificarFolga = func[posicaoPara];
             func[posicaoPara] = QString::number(4)+"T("+dataDia.toString("dd/MM") +")";
             break;
         case -1:
+            verificarFolga = funcAnoSeg[posicaoPara];
             funcAnoSeg[posicaoPara] = QString::number(4)+"T("+dataDia.toString("dd/MM") +")";
             break;
         case 1:
+            verificarFolga = funcAnoAnt[posicaoPara];
             funcAnoAnt[posicaoPara] = QString::number(4)+"T("+dataDia.toString("dd/MM") +")";
             break;
         }
+
+    if (verificarFolga != "0") {
+        QMessageBox::warning(this,"Problema!","O funcionário já está de folga na data selecionada.");
+        return;
+    }
 
 //    func[posicaoPara] = QString::number(4)+"T("+dataDia.toString("dd/MM") +")";
 

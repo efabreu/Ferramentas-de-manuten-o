@@ -9,5 +9,6 @@
         <file>Icons/trocaFolgaIcon.png</file>
         <file>Icons/mainIcone2.png</file>
         <file>Icons/legendaIcon.png</file>
+        <file>Icons/obsIcon.png</file>
     </qresource>
 </RCC>

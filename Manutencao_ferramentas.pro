@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     BotaoIsabella.cpp \
     addf.cpp \
+    adicionarobservacao.cpp \
     criarfolga.cpp \
     ferias.cpp \
     janela_dia.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     BotaoIsabella.h \
     addf.h \
+    adicionarobservacao.h \
     criarfolga.h \
     ferias.h \
     janela_dia.h \
@@ -29,6 +31,7 @@ HEADERS += \
 
 FORMS += \
     addf.ui \
+    adicionarobservacao.ui \
     criarfolga.ui \
     ferias.ui \
     janela_dia.ui \
