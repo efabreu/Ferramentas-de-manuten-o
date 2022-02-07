@@ -557,15 +557,22 @@
     <property name="title">
      <string>Arquivo</string>
     </property>
-    <addaction name="actionAdd_Funcionario"/>
-    <addaction name="actionFerias"/>
-    <addaction name="actionAdicionar_Folga"/>
-    <addaction name="separator"/>
     <addaction name="actionImprimir"/>
     <addaction name="separator"/>
     <addaction name="actionSair"/>
    </widget>
+   <widget class="QMenu" name="menuA_es">
+    <property name="title">
+     <string>Ações</string>
+    </property>
+    <addaction name="actionAdd_Funcionario"/>
+    <addaction name="actionFerias"/>
+    <addaction name="actionAdicionar_Observa_o"/>
+    <addaction name="actionAdicionar_Folga"/>
+    <addaction name="actionAdicionar_dia_de_Trabalho"/>
+   </widget>
    <addaction name="menuManuten_o"/>
+   <addaction name="menuA_es"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionAdd_Funcionario">
@@ -591,6 +598,16 @@
   <action name="actionSair">
    <property name="text">
     <string>Sair</string>
+   </property>
+  </action>
+  <action name="actionAdicionar_Observa_o">
+   <property name="text">
+    <string>Adicionar Observação</string>
+   </property>
+  </action>
+  <action name="actionAdicionar_dia_de_Trabalho">
+   <property name="text">
+    <string>Adicionar dia de Trabalho</string>
    </property>
   </action>
  </widget>
