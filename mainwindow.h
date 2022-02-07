@@ -8,7 +8,7 @@
 #include "ferias.h"
 #include "criarfolga.h"
 #include "janelalegenda.h"
-#include "adicionarobservacao.h"
+
 
 
 using namespace std;
@@ -55,8 +55,6 @@ private slots:
 
     void on_pushButton_legenda_clicked();
 
-    void on_actionAdicionar_Observa_o_triggered();
-
 signals:
 
     void clicked(int diaBotao);
@@ -78,7 +76,6 @@ private:
     ferias *form03;
     criarFolga *form04;
     janelaLegenda *form05;
-    adicionarObservacao *form06;
 
 };
 #endif // MAINWINDOW_H

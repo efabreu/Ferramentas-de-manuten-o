@@ -559,7 +559,6 @@
     </property>
     <addaction name="actionAdd_Funcionario"/>
     <addaction name="actionFerias"/>
-    <addaction name="actionAdicionar_Observa_o"/>
     <addaction name="actionAdicionar_Folga"/>
     <addaction name="separator"/>
     <addaction name="actionImprimir"/>
@@ -592,11 +591,6 @@
   <action name="actionSair">
    <property name="text">
     <string>Sair</string>
-   </property>
-  </action>
-  <action name="actionAdicionar_Observa_o">
-   <property name="text">
-    <string>Adicionar Observação</string>
    </property>
   </action>
  </widget>
